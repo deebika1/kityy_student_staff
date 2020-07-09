@@ -65,3 +65,16 @@ app.delete("/api/student/:id", (req, res) => {
 
   res.json({ message: `User ${studentId} deleted.` });
 });
+
+app.delete("/api/studentmethod2/:id", (req, res) => {
+  let studentId = req.params.id;
+  console.log(studentId);
+
+  let result = student.filter((val) => {
+    if (val.id !== Id) return val;
+  })[0];
+  //console.log(result);
+  student = result;
+  console.log(student);
+  res.json({ message: `User ${studentId} deleted.` });
+});
