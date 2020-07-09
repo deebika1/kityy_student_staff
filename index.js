@@ -35,16 +35,16 @@ app.put("/api/staff/:id", (req, res) => {
 
   console.log(Id);
   let c = 0;
-  let s1 = staff.find((value, index) => {
+  let staffIndex = staff.find((value, index) => {
     return value.id == Id;
   });
-  let s2 = student.reduce((acc, cur) => {
+  let count = student.reduce((acc, cur) => {
     if (cur.staffId == Id) {
       acc = acc + 1;
     }
     return acc;
   }, 0);
-  s1.studentCount = s2;
+  staffIndex.studentCount = count;
   res.json({
     message: "id created",
   });
@@ -54,11 +54,11 @@ app.delete("/api/student/:id", (req, res) => {
   let studentId = req.params.id;
   console.log(studentId);
 
-  let s = student.filter((s) => {
-    return s.id == studentId;
+  let studentfilter = student.filter((element) => {
+    return element.id == studentId;
   })[0];
 
-  const index = student.indexOf(s);
+  const index = student.indexOf(studentfilter);
 
   student.splice(index, 1);
   console.log(student);
