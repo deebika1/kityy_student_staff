@@ -35,9 +35,9 @@ app.put("/api/staff/:id", (req, res) => {
 
   console.log(Id);
   let c = 0;
-  let staffIndex = staff.find((value, index) => {
+  let staffIndex = staff.filter((value, index) => {
     return value.id == Id;
-  });
+  })[0];
   let count = student.reduce((acc, cur) => {
     if (cur.staffId == Id) {
       acc = acc + 1;
