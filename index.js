@@ -78,3 +78,24 @@ app.delete("/api/studentmethod2/:id", (req, res) => {
   console.log(student);
   res.json({ message: `User ${studentId} deleted.` });
 });
+/* staff details
+
+"name"	:	"moniii",
+"id"	:	1,
+"staffCount"	:	0
+*/
+
+/* student details 
+
+"name"	:	ishu11
+"email"	:	ishuu1111@gmail.com
+"staffCount"	:	0
+"id"	:	1
+
+
+name	:	ishu22
+email	:	ishuu2222@gmail.com
+staffCount	:	0
+id	:	1
+
+*/
