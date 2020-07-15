@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
-const body = require("body-parser");
-app.use(body.json());
-const port = process.env.PORT || 3000;
+const body1 = require("body-parser");
+app.use(body1.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+const port = process.env.PORT || 5000;
 let student = [];
 let staff = [];
-app.listen(port, () => {
-  console.log(`server is listening to port ${port}`);
-});
 app.get("/staff", (req, res) => {
   console.log("staff data is created");
   res.json(staff);
@@ -20,7 +21,6 @@ app.post("/staffDetails", (req, res) => {
   });
 });
 app.get("/student", (req, res) => {
-  student.push(req.body);
   console.log("students data is created");
   console.log(student);
   res.json(student);
@@ -66,36 +66,36 @@ app.delete("/api/student/:id", (req, res) => {
   res.json({ message: `User ${studentId} deleted.` });
 });
 
-app.delete("/api/studentmethod2/:id", (req, res) => {
-  let studentId = req.params.id;
-  console.log(studentId);
+// app.delete("/api/studentmethod2/:id", (req, res) => {
+//   let studentId = req.params.id;
+//   console.log(studentId);
 
-  let result = student.filter((val) => {
-    if (val.id !== Id) return val;
-  })[0];
-  //console.log(result);
-  student = result;
-  console.log(student);
-  res.json({ message: `User ${studentId} deleted.` });
+//   let result = student.filter((val) => {
+//     if (val.id !== Id) return val;
+//   })[0];
+//   //console.log(result);
+//   student = result;
+//   console.log(student);
+//   res.json({ message: `User ${studentId} deleted.` });
+// });
+app.listen(port, () => {
+  console.log(`server is listening to port ${port}`);
 });
 /* staff details
-
-"name"	:	"moniii",
+{"name"	:	"moniii",
 "id"	:	1,
+"email":"moniii@gmail.com"
 "staffCount"	:	0
+}
 */
 
 /* student details 
-
-"name"	:	ishu11
-"email"	:	ishuu1111@gmail.com
-"staffCount"	:	0
-"id"	:	1
-
-
-name	:	ishu22
-email	:	ishuu2222@gmail.com
-staffCount	:	0
-id	:	1
+{
+    "name":"ishuuu22",
+    "email":"ishuu22@gmail.com",
+    "id":1,
+    "staffId":"1"
+  
+}
 
 */
